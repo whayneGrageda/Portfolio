@@ -148,7 +148,7 @@ export class HomeView {
         <div class="hero-grid">
           <div class="hero-content animate-on-scroll fade-in-up">
             <div class="space-y-4">
-              <p class="hero-label">SOFTWARE ENGINEER & IT SPECIALIST</p>
+              <p class="hero-label">FULL STACK DEVELOPER</p>
               <h1 class="hero-title">Architecting robust digital solutions with precision and elegance.</h1>
             </div>
             <p class="hero-description">
