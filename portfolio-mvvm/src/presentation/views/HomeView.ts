@@ -145,7 +145,7 @@ export class HomeView {
           <a href="#education" class="nav-link" data-section="education">Education</a>
           <a href="#contact" class="nav-link" data-section="contact">Contact</a>
         </div>
-        <a href="#contact" class="nav-contact" data-section="contact">Contact Me</a>
+        <a href="#contact" class="nav-contact" data-section="contact">Let's Talk</a>
       </nav>
     `;
   }
