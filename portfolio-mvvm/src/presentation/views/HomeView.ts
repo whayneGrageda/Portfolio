@@ -550,10 +550,7 @@ export class HomeView {
           this.updateActiveNav(section);
           
           // Close mobile menu after navigation
-          const nav = document.querySelector('.portfolio-nav');
-          if (nav?.classList.contains('mobile-open')) {
-            this.toggleMobileMenu();
-          }
+          this.closeMobileMenu();
         }
       });
     });
@@ -561,7 +558,8 @@ export class HomeView {
     // Mobile hamburger menu
     const hamburger = document.querySelector('.nav-hamburger');
     if (hamburger) {
-      hamburger.addEventListener('click', () => {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling
         this.toggleMobileMenu();
       });
     }
@@ -592,6 +590,8 @@ export class HomeView {
     this.setupContactModal();
   }
 
+  private mobileMenuBackdropHandler: ((e: MouseEvent) => void) | null = null;
+
   /**
    * Toggle mobile menu
    */
@@ -600,28 +600,62 @@ export class HomeView {
     const hamburger = document.querySelector('.nav-hamburger');
     
     if (nav && hamburger) {
-      nav.classList.toggle('mobile-open');
-      hamburger.classList.toggle('active');
+      const isOpen = nav.classList.contains('mobile-open');
       
-      // Prevent body scroll when menu is open
-      if (nav.classList.contains('mobile-open')) {
+      if (isOpen) {
+        // Close the menu
+        this.closeMobileMenu();
+      } else {
+        // Open the menu
+        nav.classList.add('mobile-open');
+        hamburger.classList.add('active');
         document.body.style.overflow = 'hidden';
         
-        // Add click listener to backdrop to close menu
-        const closeOnBackdrop = (e: MouseEvent) => {
-          const navLinks = document.querySelector('.nav-links');
-          if (navLinks && !navLinks.contains(e.target as Node) && e.target !== hamburger) {
-            this.toggleMobileMenu();
-            document.removeEventListener('click', closeOnBackdrop);
-          }
-        };
+        // Remove old listener if exists
+        if (this.mobileMenuBackdropHandler) {
+          document.removeEventListener('click', this.mobileMenuBackdropHandler);
+          this.mobileMenuBackdropHandler = null;
+        }
         
+        // Add click listener to backdrop to close menu (with delay)
         setTimeout(() => {
-          document.addEventListener('click', closeOnBackdrop);
-        }, 100);
-      } else {
-        document.body.style.overflow = '';
+          this.mobileMenuBackdropHandler = (e: MouseEvent) => {
+            const navLinks = document.querySelector('.nav-links');
+            const target = e.target as Node;
+            
+            // Close if clicking outside navLinks and not the hamburger
+            if (navLinks && !navLinks.contains(target) && !hamburger.contains(target)) {
+              this.closeMobileMenu();
+            }
+          };
+          
+          document.addEventListener('click', this.mobileMenuBackdropHandler);
+        }, 200);
       }
+    }
+  }
+
+  /**
+   * Close mobile menu and cleanup
+   */
+  private closeMobileMenu(): void {
+    const nav = document.querySelector('.portfolio-nav');
+    const hamburger = document.querySelector('.nav-hamburger');
+    
+    if (nav) {
+      nav.classList.remove('mobile-open');
+    }
+    
+    if (hamburger) {
+      hamburger.classList.remove('active');
+    }
+    
+    document.body.style.overflow = '';
+    
+    // Remove backdrop listener immediately
+    if (this.mobileMenuBackdropHandler) {
+      document.removeEventListener('click', this.mobileMenuBackdropHandler);
+      this.mobileMenuBackdropHandler = null;
     }
   }
 
