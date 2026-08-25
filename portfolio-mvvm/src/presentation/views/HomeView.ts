@@ -450,12 +450,46 @@ export class HomeView {
             Available for freelance opportunities and select consulting engagements.
           </p>
           <div class="contact-links">
-            <a href="mailto:gragedawhayne@gmail.com" class="contact-link">Email</a>
+            <a href="#" class="contact-link" id="email-contact-link">Email</a>
             <a href="https://github.com/whayneGrageda" target="_blank" rel="noopener" class="contact-link">GitHub</a>
             <a href="https://www.linkedin.com/in/whayne-grageda-060482340" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
           </div>
         </div>
       </section>
+
+      <!-- Contact Modal -->
+      <div id="contact-modal" class="contact-modal">
+        <div class="contact-modal-overlay"></div>
+        <div class="contact-modal-content">
+          <button class="contact-modal-close" aria-label="Close">&times;</button>
+          <h2 class="contact-modal-title">Get in Touch</h2>
+          <p class="contact-modal-subtitle">Fill out the form and I'll get back to you soon.</p>
+          
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Name</label>
+              <input type="text" id="contact-name" name="name" class="form-input" required placeholder="Your name">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email Address</label>
+              <input type="email" id="contact-email" name="email" class="form-input" required placeholder="your.email@example.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">Subject</label>
+              <input type="text" id="contact-subject" name="subject" class="form-input" required placeholder="What's this about?">
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message</label>
+              <textarea id="contact-message" name="message" class="form-textarea" rows="5" required placeholder="Your message..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+          </form>
+        </div>
+      </div>
     `;
   }
 
@@ -530,6 +564,75 @@ export class HomeView {
           this.router.navigate(`/projects/${projectId}`);
         }
       });
+    });
+
+    // Contact modal
+    this.setupContactModal();
+  }
+
+  /**
+   * Setup contact modal
+   */
+  private setupContactModal(): void {
+    const emailLink = document.getElementById('email-contact-link');
+    const modal = document.getElementById('contact-modal');
+    const modalClose = document.querySelector('.contact-modal-close');
+    const modalOverlay = document.querySelector('.contact-modal-overlay');
+    const contactForm = document.getElementById('contact-form');
+
+    // Open modal
+    if (emailLink && modal) {
+      emailLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    // Close modal
+    const closeModal = () => {
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    };
+
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
+
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', closeModal);
+    }
+
+    // Handle form submission
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm as HTMLFormElement);
+        const name = formData.get('name') as string;
+        const email = formData.get('email') as string;
+        const subject = formData.get('subject') as string;
+        const message = formData.get('message') as string;
+
+        // Create Gmail compose URL
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=gragedawhayne@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`)}`;
+        
+        // Open Gmail in new tab
+        window.open(gmailUrl, '_blank');
+        
+        // Close modal and reset form
+        closeModal();
+        (contactForm as HTMLFormElement).reset();
+      });
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+      }
     });
   }
 
