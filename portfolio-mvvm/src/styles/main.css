@@ -275,7 +275,7 @@ html {
    ================================ */
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -283,11 +283,17 @@ html {
   padding-top: 8rem;
   padding-bottom: var(--spacing-2xl);
   background-image: url('/images/bgkoto.png');
-  background-size: cover;
-  background-position: center;
+  background-size: auto 100%;
+  background-position: right top;
   background-repeat: no-repeat;
   animation: fadeIn 1.5s ease-out forwards;
-  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    background-size: auto 80vh;
+    background-position: center top;
+  }
 }
 
 @keyframes fadeIn {
@@ -304,24 +310,12 @@ html {
   position: absolute;
   inset: 0;
   background: linear-gradient(to right, 
-    rgba(14, 14, 14, 0.95) 0%, 
-    rgba(14, 14, 14, 0.85) 50%, 
-    rgba(14, 14, 14, 0.4) 100%
+    rgba(14, 14, 14, 1) 0%, 
+    rgba(14, 14, 14, 0.9) 40%, 
+    rgba(14, 14, 14, 0.6) 70%,
+    rgba(14, 14, 14, 0.3) 100%
   );
   z-index: 1;
-}
-
-/* Mobile: Full dark overlay */
-@media (max-width: 768px) {
-  .hero-section {
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-  }
-  
-  .hero-section::before {
-    background: rgba(14, 14, 14, 0.75);
-  }
 }
 
 .hero-grid {
