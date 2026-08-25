@@ -109,6 +109,7 @@ export class HomeView {
       <main class="portfolio-main">
         ${this.renderHeroSection()}
         ${this.renderAboutSection()}
+        ${this.renderExperienceSection()}
         ${this.renderProjectsSection(projects)}
         ${this.renderSkillsSection(skillGroups)}
         ${this.renderEducationSection()}
@@ -130,6 +131,7 @@ export class HomeView {
         <div class="nav-links">
           <a href="#home" class="nav-link active" data-section="home">Home</a>
           <a href="#about" class="nav-link" data-section="about">About</a>
+          <a href="#experience" class="nav-link" data-section="experience">Experience</a>
           <a href="#projects" class="nav-link" data-section="projects">Projects</a>
           <a href="#skills" class="nav-link" data-section="skills">Skills</a>
           <a href="#education" class="nav-link" data-section="education">Education</a>
@@ -190,6 +192,50 @@ export class HomeView {
               <blockquote class="quote">
                 "Engineering is an art form constrained by logic."
               </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  /**
+   * Render experience section
+   */
+  private renderExperienceSection(): string {
+    const techStack = ['Node.js', 'TypeScript', 'RESTful APIs', 'PostgreSQL', 'Microservices', 'Kafka'];
+    
+    return `
+      <section id="experience" class="portfolio-section experience-section">
+        <div class="section-content">
+          <div class="section-header animate-on-scroll fade-in-up">
+            <h2 class="section-title-large">Work Experience</h2>
+            <p class="section-subtitle">Professional journey and contributions</p>
+          </div>
+          
+          <div class="experience-timeline">
+            <div class="bento-card experience-card animate-on-scroll fade-in-up">
+              <div class="experience-header">
+                <div class="experience-title-group">
+                  <h3 class="experience-title">Full Stack Developer Intern</h3>
+                  <p class="experience-company">Department of Science and Technology (DOST)</p>
+                  <p class="experience-department">PES-DX Division, Information Technology Department</p>
+                </div>
+                <span class="experience-date">December 2025 – May 2026</span>
+              </div>
+              
+              <ul class="experience-highlights">
+                <li>Developed and maintained backend services and secured REST API endpoints across multiple microservices, including setting up the full authorization backend for the system.</li>
+                <li>Collaborated with the development team through version control workflows, conducted knowledge transfer sessions, and guided co-interns throughout the internship period.</li>
+                <li>Wrote comprehensive technical documentation covering API details, acceptance criteria, request and response bodies, SQL queries, and unit testing guides.</li>
+              </ul>
+              
+              <div class="experience-tech">
+                ${techStack.map(tech => {
+                  const icon = getTechIcon(tech);
+                  return `<span class="tech-badge">${icon ? `<i class="${icon}"></i> ` : ''}${tech}</span>`;
+                }).join('')}
+              </div>
             </div>
           </div>
         </div>

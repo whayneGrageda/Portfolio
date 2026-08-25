@@ -202,6 +202,66 @@ html {
 }
 
 /* ================================
+   Section-Specific Accent Colors
+   ================================ */
+.experience-section {
+  --section-accent: #a0c4d9; /* Professional blue-gray */
+}
+
+.experience-section .experience-company,
+.experience-section .experience-date {
+  color: var(--section-accent);
+}
+
+.projects-section {
+  --section-accent: #efe0c9; /* Default gold */
+}
+
+.projects-section .section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+.skills-section {
+  --section-accent: #b8d4a8; /* Tech green */
+}
+
+.skills-section .section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+.skills-section .skill-icon svg {
+  color: var(--section-accent);
+}
+
+.education-section {
+  --section-accent: #c4b5e0; /* Academic purple */
+}
+
+.education-section .section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+.education-section .education-label,
+.education-section .cert-icon svg {
+  color: var(--section-accent);
+}
+
+.contact-section {
+  --section-accent: #f0b878; /* Warm orange-gold */
+}
+
+.contact-section .contact-info-item svg,
+.contact-section .contact-link svg {
+  color: var(--section-accent);
+}
+
+/* ================================
    Hero Section
    ================================ */
 .hero-section {
@@ -671,6 +731,106 @@ html {
   font-size: 16px;
   font-weight: 400;
   color: var(--color-on-surface-variant);
+}
+
+/* ================================
+   Experience Section
+   ================================ */
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.experience-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.experience-title-group {
+  flex: 1;
+  min-width: 250px;
+}
+
+.experience-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-on-surface);
+  margin-bottom: 0.5rem;
+}
+
+.experience-company {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.experience-department {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-on-surface-variant);
+  font-style: italic;
+}
+
+.experience-date {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.experience-highlights {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding-left: 0;
+}
+
+.experience-highlights li {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-on-surface-variant);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.experience-highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+}
+
+.experience-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-outline-variant);
 }
 
 /* ================================
