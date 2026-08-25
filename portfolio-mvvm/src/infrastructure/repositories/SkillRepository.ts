@@ -36,25 +36,29 @@ export class SkillRepository implements ISkillRepository {
   private initializeSkills(): Skill[] {
     return [
       // Frontend
-      { id: '1', name: 'React & Next.js', category: SkillCategory.FRONTEND, proficiency: SkillLevel.ADVANCED, order: 1 },
-      { id: '2', name: 'TypeScript', category: SkillCategory.FRONTEND, proficiency: SkillLevel.ADVANCED, order: 2 },
-      { id: '3', name: 'Tailwind CSS', category: SkillCategory.FRONTEND, proficiency: SkillLevel.ADVANCED, order: 3 },
-      { id: '4', name: 'Three.js / WebGL', category: SkillCategory.FRONTEND, proficiency: SkillLevel.INTERMEDIATE, order: 4 },
-      { id: '5', name: 'HTML5 & CSS3', category: SkillCategory.FRONTEND, proficiency: SkillLevel.EXPERT, order: 5 },
+      { id: '1', name: 'TypeScript', category: SkillCategory.FRONTEND, proficiency: SkillLevel.ADVANCED, order: 1 },
+      { id: '2', name: 'HTML5 & CSS3', category: SkillCategory.FRONTEND, proficiency: SkillLevel.ADVANCED, order: 2 },
+      { id: '3', name: 'React/Next.js', category: SkillCategory.FRONTEND, proficiency: SkillLevel.ADVANCED, order: 3 },
+      { id: '4', name: 'Tailwind', category: SkillCategory.FRONTEND, proficiency: SkillLevel.ADVANCED, order: 4 },
       
       // Backend
-      { id: '6', name: 'Node.js & Express', category: SkillCategory.BACKEND, proficiency: SkillLevel.ADVANCED, order: 1 },
-      { id: '7', name: 'Python', category: SkillCategory.BACKEND, proficiency: SkillLevel.ADVANCED, order: 2 },
-      { id: '8', name: 'RESTful APIs', category: SkillCategory.BACKEND, proficiency: SkillLevel.ADVANCED, order: 3 },
-      { id: '9', name: 'GraphQL', category: SkillCategory.BACKEND, proficiency: SkillLevel.INTERMEDIATE, order: 4 },
-      { id: '10', name: 'C#', category: SkillCategory.BACKEND, proficiency: SkillLevel.INTERMEDIATE, order: 5 },
+      { id: '5', name: 'Node.js & Express', category: SkillCategory.BACKEND, proficiency: SkillLevel.ADVANCED, order: 1 },
+      { id: '6', name: 'TypeScript', category: SkillCategory.BACKEND, proficiency: SkillLevel.ADVANCED, order: 2 },
+      { id: '7', name: 'RESTful APIs', category: SkillCategory.BACKEND, proficiency: SkillLevel.ADVANCED, order: 3 },
+      { id: '8', name: 'Python', category: SkillCategory.BACKEND, proficiency: SkillLevel.ADVANCED, order: 4 },
       
       // Infrastructure
-      { id: '11', name: 'PostgreSQL', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.ADVANCED, order: 1 },
-      { id: '12', name: 'Docker', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 2 },
-      { id: '13', name: 'AWS (EC2, S3, RDS)', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 3 },
-      { id: '14', name: 'CI/CD Pipelines', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 4 },
-      { id: '15', name: 'Linux Administration', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.ADVANCED, order: 5 }
+      { id: '9', name: 'Jenkins', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 1 },
+      { id: '10', name: 'Kubernetes', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 2 },
+      { id: '11', name: 'CI/CD Pipelines', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 3 },
+      { id: '12', name: 'Docker', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 4 },
+      { id: '13', name: 'Kafka', category: SkillCategory.INFRASTRUCTURE, proficiency: SkillLevel.INTERMEDIATE, order: 5 },
+
+      // Architecture
+      { id: '14', name: 'Clean Architecture', category: SkillCategory.ARCHITECTURE, proficiency: SkillLevel.ADVANCED, order: 1 },
+      { id: '15', name: 'MVC', category: SkillCategory.ARCHITECTURE, proficiency: SkillLevel.ADVANCED, order: 2 },
+      { id: '16', name: 'MVVM', category: SkillCategory.ARCHITECTURE, proficiency: SkillLevel.ADVANCED, order: 3 },
+      { id: '17', name: 'Microservices', category: SkillCategory.ARCHITECTURE, proficiency: SkillLevel.INTERMEDIATE, order: 4 }
     ];
   }
 }

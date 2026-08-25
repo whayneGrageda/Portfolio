@@ -15,6 +15,7 @@ export enum SkillCategory {
   FRONTEND = 'Frontend',
   BACKEND = 'Backend',
   INFRASTRUCTURE = 'Infrastructure',
+  ARCHITECTURE = 'Architecture',
   DATABASE = 'Database',
   TOOLS = 'Tools',
   OTHER = 'Other'

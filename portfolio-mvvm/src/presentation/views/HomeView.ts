@@ -2,6 +2,7 @@ import { HomeViewModel } from '@viewmodels/HomeViewModel';
 import { Project } from '@models/Project';
 import { SkillGroup } from '@models/Skill';
 import { RouterService } from '@/infrastructure/services/RouterService';
+import { getTechIcon } from '@/utils/techIcons';
 
 /**
  * View: Home Page
@@ -204,6 +205,12 @@ export class HomeView {
       .map(
         (project, index) => `
         <div class="bento-card project-card animate-on-scroll fade-in-up" style="animation-delay: ${index * 0.1}s;" data-project-id="${project.id}">
+          <div class="project-card-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
           <div class="project-header">
             <span class="project-category">${project.category}</span>
             <h3 class="project-title">${project.title}</h3>
@@ -211,7 +218,12 @@ export class HomeView {
           </div>
           <p class="project-description">${project.description}</p>
           <div class="project-tech">
-            ${project.techStack.slice(0, 5).map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+            ${project.techStack.slice(0, 5).map(tech => {
+              const icon = getTechIcon(tech);
+              const html = `<span class="tech-badge">${icon ? `<i class="${icon}"></i> ` : ''}${tech}</span>`;
+              console.log('Badge HTML:', html); // Debug
+              return html;
+            }).join('')}
           </div>
         </div>
       `
@@ -253,6 +265,16 @@ export class HomeView {
         <path d="M12 2L2 7l10 5 10-5-10-5z"/>
         <path d="M2 17l10 5 10-5"/>
         <path d="M2 12l10 5 10-5"/>
+      </svg>`,
+      'Architecture': `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7"/>
+        <rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/>
+        <rect x="3" y="14" width="7" height="7"/>
+        <line x1="10" y1="6.5" x2="14" y2="6.5"/>
+        <line x1="10" y1="17.5" x2="14" y2="17.5"/>
+        <line x1="6.5" y1="10" x2="6.5" y2="14"/>
+        <line x1="17.5" y1="10" x2="17.5" y2="14"/>
       </svg>`
     };
 

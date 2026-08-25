@@ -1,6 +1,7 @@
 import { ProjectDetailViewModel } from '@viewmodels/ProjectDetailViewModel';
 import { Project } from '@models/Project';
 import { RouterService } from '@/infrastructure/services/RouterService';
+import { getTechIcon } from '@/utils/techIcons';
 
 /**
  * View: Project Detail Page
@@ -75,7 +76,10 @@ export class ProjectDetailView {
           <div class="bento-card tech-card grain-overlay">
             <h2 class="bento-card-title">Tech Stack</h2>
             <ul class="tech-list">
-              ${project.techStack.map(tech => `<li class="tech-list-item">${tech}</li>`).join('')}
+              ${project.techStack.map(tech => {
+                const icon = getTechIcon(tech);
+                return `<li class="tech-list-item">${icon ? `<i class="${icon}"></i>` : ''}${tech}</li>`;
+              }).join('')}
             </ul>
           </div>
 

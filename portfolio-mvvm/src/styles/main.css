@@ -460,6 +460,40 @@ html {
   transform: translateY(-2px);
 }
 
+/* Project Card Arrow Indicator */
+.project-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.project-card-arrow {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 20;
+  opacity: 0.6;
+}
+
+.project-card-arrow svg {
+  color: var(--color-primary);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card-arrow {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.project-card:hover .project-card-arrow svg {
+  transform: translate(3px, -3px);
+}
+
 .bento-large {
   grid-column: span 2;
 }
@@ -586,6 +620,9 @@ html {
   border: 1px solid var(--color-outline-variant);
   border-radius: var(--radius-sm);
   color: var(--color-on-surface);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 /* ================================
@@ -1213,6 +1250,21 @@ html {
   border: 1px solid var(--color-outline-variant);
   border-radius: var(--radius-sm);
   color: var(--color-on-surface);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.tech-list-item:hover {
+  border-color: var(--color-primary-container);
+  color: var(--color-primary);
+}
+
+.tech-list-item i,
+.tech-badge i {
+  font-size: 14px;
+  color: var(--color-primary-container);
 }
 
 /* CTA Section */
