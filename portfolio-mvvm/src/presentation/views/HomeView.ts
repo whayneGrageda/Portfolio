@@ -554,6 +554,44 @@ export class HomeView {
     // Observe all elements with animate-on-scroll class
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
+
+    // Setup scroll spy for navigation
+    this.setupScrollSpy();
+  }
+
+  /**
+   * Setup scroll spy for navigation highlighting
+   */
+  private setupScrollSpy(): void {
+    const sections = document.querySelectorAll('.portfolio-section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          
+          // Update active nav link
+          navLinks.forEach(link => {
+            const linkSection = (link as HTMLElement).dataset.section;
+            if (linkSection === sectionId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    sections.forEach(section => observer.observe(section));
   }
 
   /**

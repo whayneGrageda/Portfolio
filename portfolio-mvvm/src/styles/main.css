@@ -123,11 +123,27 @@ body {
   transition: color 0.3s ease;
   position: relative;
   line-height: 16px;
+  padding-bottom: 0.5rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover {
   color: var(--color-primary);
   transition-duration: 300ms;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .nav-link.active {
@@ -136,14 +152,7 @@ body {
 }
 
 .nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: -0.25rem;
-  left: 0;
-  width: 0.25rem;
-  height: 0.25rem;
-  background: var(--color-primary);
-  border-radius: 9999px;
+  width: 100%;
 }
 
 .nav-contact {
