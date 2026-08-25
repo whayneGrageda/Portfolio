@@ -128,6 +128,14 @@ export class HomeView {
     return `
       <nav class="portfolio-nav">
         <div class="nav-logo">PORTFOLIO</div>
+        
+        <!-- Mobile hamburger menu -->
+        <button class="nav-hamburger" aria-label="Toggle menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        
         <div class="nav-links">
           <a href="#home" class="nav-link active" data-section="home">Home</a>
           <a href="#about" class="nav-link" data-section="about">About</a>
@@ -540,9 +548,23 @@ export class HomeView {
         if (section) {
           this.viewModel.navigateToSection(section);
           this.updateActiveNav(section);
+          
+          // Close mobile menu after navigation
+          const nav = document.querySelector('.portfolio-nav');
+          if (nav?.classList.contains('mobile-open')) {
+            this.toggleMobileMenu();
+          }
         }
       });
     });
+
+    // Mobile hamburger menu
+    const hamburger = document.querySelector('.nav-hamburger');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        this.toggleMobileMenu();
+      });
+    }
 
     // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
@@ -568,6 +590,39 @@ export class HomeView {
 
     // Contact modal
     this.setupContactModal();
+  }
+
+  /**
+   * Toggle mobile menu
+   */
+  private toggleMobileMenu(): void {
+    const nav = document.querySelector('.portfolio-nav');
+    const hamburger = document.querySelector('.nav-hamburger');
+    
+    if (nav && hamburger) {
+      nav.classList.toggle('mobile-open');
+      hamburger.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (nav.classList.contains('mobile-open')) {
+        document.body.style.overflow = 'hidden';
+        
+        // Add click listener to backdrop to close menu
+        const closeOnBackdrop = (e: MouseEvent) => {
+          const navLinks = document.querySelector('.nav-links');
+          if (navLinks && !navLinks.contains(e.target as Node) && e.target !== hamburger) {
+            this.toggleMobileMenu();
+            document.removeEventListener('click', closeOnBackdrop);
+          }
+        };
+        
+        setTimeout(() => {
+          document.addEventListener('click', closeOnBackdrop);
+        }, 100);
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
   }
 
   /**
