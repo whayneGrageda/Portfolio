@@ -274,8 +274,8 @@ html {
   padding-top: 8rem;
   padding-bottom: var(--spacing-2xl);
   background-image: url('/images/bgkoto.png');
-  background-size: cover;
-  background-position: center right;
+  background-size: contain;
+  background-position: right top;
   background-repeat: no-repeat;
   animation: fadeIn 1.5s ease-out forwards;
 }
