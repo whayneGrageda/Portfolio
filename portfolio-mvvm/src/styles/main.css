@@ -1156,6 +1156,12 @@ html {
   color: var(--color-primary);
 }
 
+.resume-button {
+  display: inline-block;
+  margin-top: var(--spacing-lg);
+  text-decoration: none;
+}
+
 /* ================================
    Footer
    ================================ */

@@ -462,6 +462,7 @@ export class HomeView {
             <a href="https://github.com/whayneGrageda" target="_blank" rel="noopener" class="contact-link">GitHub</a>
             <a href="https://www.linkedin.com/in/whayne-grageda-060482340" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
           </div>
+          <a href="/images/Grageda_Whayne_Resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost resume-button">My Resume</a>
         </div>
       </section>
 
