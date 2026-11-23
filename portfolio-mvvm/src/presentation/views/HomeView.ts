@@ -2,6 +2,11 @@ import { HomeViewModel } from '@viewmodels/HomeViewModel';
 import { Project } from '@models/Project';
 import { SkillGroup } from '@models/Skill';
 import { RouterService } from '@/infrastructure/services/RouterService';
+import {
+  destroyKineticSection,
+  initKineticSection,
+  renderKineticSection,
+} from '@/infrastructure/services/KineticSection';
 import { getTechIcon } from '@/utils/techIcons';
 
 /**
@@ -104,10 +109,13 @@ export class HomeView {
    * Render main content
    */
   private renderContent(projects: Project[], skillGroups: SkillGroup[]): void {
+    destroyKineticSection();
+
     this.container.innerHTML = `
       ${this.renderNavigation()}
       <main class="portfolio-main">
         ${this.renderHeroSection()}
+        ${renderKineticSection()}
         ${this.renderAboutSection()}
         ${this.renderExperienceSection()}
         ${this.renderProjectsSection(projects)}
@@ -118,6 +126,7 @@ export class HomeView {
       ${this.renderFooter()}
     `;
 
+    initKineticSection();
     this.attachEventListeners();
   }
 

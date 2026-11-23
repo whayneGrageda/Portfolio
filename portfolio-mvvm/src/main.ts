@@ -4,6 +4,7 @@
  */
 
 import './styles/main.css';
+import './styles/kinetic.css';
 
 // Services
 import { ThemeService } from '@services/ThemeService';
