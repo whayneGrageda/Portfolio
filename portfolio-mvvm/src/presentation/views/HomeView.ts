@@ -7,6 +7,11 @@ import {
   initKineticSection,
   renderKineticSection,
 } from '@/infrastructure/services/KineticSection';
+import {
+  destroyModelSection,
+  initModelSection,
+  renderModelSection,
+} from '@/infrastructure/services/ModelSection';
 import { getTechIcon } from '@/utils/techIcons';
 
 /**
@@ -110,6 +115,7 @@ export class HomeView {
    */
   private renderContent(projects: Project[], skillGroups: SkillGroup[]): void {
     destroyKineticSection();
+    destroyModelSection();
 
     this.container.innerHTML = `
       ${this.renderNavigation()}
@@ -121,12 +127,14 @@ export class HomeView {
         ${this.renderProjectsSection(projects)}
         ${this.renderSkillsSection(skillGroups)}
         ${this.renderEducationSection()}
+        ${renderModelSection()}
         ${this.renderContactSection()}
       </main>
       ${this.renderFooter()}
     `;
 
     initKineticSection();
+    initModelSection();
     this.attachEventListeners();
   }
 

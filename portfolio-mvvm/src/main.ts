@@ -5,6 +5,7 @@
 
 import './styles/main.css';
 import './styles/kinetic.css';
+import './styles/model.css';
 
 // Services
 import { ThemeService } from '@services/ThemeService';
