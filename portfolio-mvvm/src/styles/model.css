@@ -5,6 +5,8 @@
 
 .model-stage {
   position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   min-height: 100vh;
   display: grid;
   place-items: center;
